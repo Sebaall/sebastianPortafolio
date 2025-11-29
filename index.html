@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastián León | Arcade Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-arcade-black text-white font-pixel overflow-x-hidden selection:bg-arcade-red selection:text-white">
+
+<div class="scanlines"></div>
+
+<header class="fixed top-0 left-0 w-full z-50 bg-black border-b-4 border-arcade-red shadow-lg bg-opacity-95 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+        
+        <div class="flex items-center gap-6 text-xs md:text-sm w-full md:w-auto justify-between md:justify-start">
+            <div class="blink-slow text-arcade-red font-bold">1UP</div>
+            <div class="text-white"><a href="index.html">SEBASTIÁN LEÓN</a></div>
+            <div class="text-arcade-cyan">SCORE: <span id="arcade-score" class="text-white">0000</span></div> 
+        </div>
+
+        <nav class="flex gap-4 md:gap-8 text-[10px] md:text-xs text-arcade-peach w-full md:w-auto justify-center">
+            <a href="#home" class="hover:text-white hover:scale-110 transition-transform">INICIO</a>
+            <a href="#projects" class="hover:text-white hover:scale-110 transition-transform">NIVELES</a>
+            <a href="#skills" class="hover:text-white hover:scale-110 transition-transform">PODERES</a>
+            <a href="#contact" class="hover:text-white hover:scale-110 transition-transform">CRÉDITOS</a>
+        </nav>
+    </div>
+</header>
+
+<main class="relative pt-32 pb-20 px-4 md:px-0 max-w-5xl mx-auto space-y-32">
+
+    <section id="home" class="text-center min-h-[60vh] flex flex-col justify-center items-center relative">
+        
+        <div class="z-10 mb-10">
+            <h1 class="text-4xl md:text-6xl text-arcade-red glow-red shadow-title mb-6 tracking-wider">
+                DONKEY DEV
+            </h1>
+            <p class="text-arcade-cyan text-xs md:text-sm tracking-widest bg-black bg-opacity-70 p-2 inline-block border border-arcade-blue">
+                ANALISTA PROGRAMADOR • CHILE
+            </p>
+        </div>
+
+        <div onclick="handleInput(event)" class="cursor-pointer girder-stage relative h-64 w-full max-w-3xl border-b-8 border-arcade-red mt-4 bg-pattern-grid overflow-hidden">
+            
+            <div id="start-screen" onclick="initGame(event)" style="display: flex;" 
+                class="absolute inset-0 z-40 bg-black bg-opacity-80 flex-col items-center justify-center text-center cursor-pointer hover:bg-opacity-70 transition-all">
+
+                <h2 class="text-arcade-red text-sm md:text-xl mb-4 blink">INSERT COIN</h2>
+
+                <div class="btn-soft px-4 py-2">
+                    <p class="text-white text-[10px] md:text-xs animate-pulse">HAZ CLIC AQUÍ PARA JUGAR</p>
+                </div>
+            </div>
+
+            <div id="game-over-screen" style="display: none;" 
+                class="hidden absolute inset-0 z-50 bg-black bg-opacity-90 flex-col items-center justify-center text-center">
+
+                <h2 class="text-arcade-red text-2xl mb-4 blink">GAME OVER</h2>
+                <p class="text-white text-xs mb-6">PUNTAJE FINAL: <span id="final-score">0</span></p>
+
+                <button onclick="resetGame(event)" class="btn-pixel btn-soft text-xs">
+                    ↻ REINTENTAR
+                </button>
+            </div>
+
+            <div class="ladder absolute bottom-0 left-10 h-full w-12 opacity-80"></div>
+            <div class="ladder absolute bottom-0 right-10 h-40 w-12 opacity-80"></div>
+            <div class="ladder absolute bottom-20 left-1/2 h-32 w-12 opacity-80 -translate-x-1/2"></div>
+            <div class="absolute bottom-20 left-1/3 right-1/3 h-4 bg-arcade-red border-y-2 border-black"></div>
+
+            <img src="img/dk.png" 
+                 class="absolute top-10 left-10 w-24 md:w-32 dk-rage" 
+                 alt="Donkey Kong">
+                 
+            <img id="mario-character" 
+                src="img/mario.png" 
+                class="absolute bottom-0 right-10 md:right-14 w-10 md:w-14" 
+                alt="Mario">
+
+            <div id="killer-barrel" class="barrel barrel-roll"></div>
+        </div>
+        
+    </section>
+
+    <section id="projects" class="space-y-16">
+        <div class="text-center mb-12">
+            <h2 class="text-arcade-blue text-xl md:text-2xl mb-2">SELECT LEVEL</h2>
+            <div class="w-24 h-1 bg-arcade-blue mx-auto"></div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-center relative group">
+            <div class="hidden md:block absolute left-1/2 -ml-1 h-32 w-2 bg-arcade-cyan -top-16 -z-10"></div>
+
+            <div class="w-full md:w-1/2 text-right order-2 md:order-1 pr-0 md:pr-8">
+                <h3 class="text-arcade-red text-sm md:text-lg mb-2 group-hover:text-arcade-peach transition-colors">
+                    LEVEL 1-1: RECICLAMAP
+                </h3>
+
+                <p class="text-[10px] md:text-xs text-gray-300 leading-relaxed mb-4">
+                    Mapa interactivo nacional con puntos de reciclaje actualizados.  
+                    Geolocalización, buscador de comunas y markers personalizados.  
+                    MVP desplegado en Firebase Hosting.
+                </p>
+
+                <div class="flex flex-wrap justify-end gap-2 mb-4">
+                    <span class="tech-pill">LEAFLET</span>
+                    <span class="tech-pill">FIREBASE</span>
+                    <span class="tech-pill">JAVASCRIPT</span>
+                </div>
+
+                <a href="https://webapp-medioambiente.web.app"
+                target="_blank"
+                class="btn-pixel text-[10px]">
+                    ▶ JUGAR NIVEL
+                </a>
+            </div>
+
+            <div class="w-full md:w-1/2 order-1 md:order-2">
+                <div class="girder-window transform hover:scale-105 transition-transform">
+                    <div class="bg-black border-2 border-arcade-blue p-4 h-32 flex items-center justify-center">
+                        <span class="text-arcade-blue text-[8px]">RECICLAMAP PREVIEW</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-center relative group">
+            <div class="hidden md:block absolute left-1/2 -ml-1 h-40 w-2 bg-arcade-cyan -top-20 -z-10"></div>
+
+            <div class="w-full md:w-1/2 order-1">
+                <div class="girder-window transform hover:scale-105 transition-transform">
+                    <div class="bg-black border-2 border-arcade-blue p-4 h-32 flex items-center justify-center">
+                        <span class="text-arcade-blue text-[8px]">NUMERIX PREVIEW</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 order-2 pl-0 md:pl-8">
+                <h3 class="text-arcade-red text-sm md:text-lg mb-2 group-hover:text-arcade-peach transition-colors">
+                    LEVEL 2-2: NUMERIX
+                </h3>
+
+                <p class="text-[10px] md:text-xs text-gray-300 leading-relaxed mb-4">
+                    App móvil creada con Flutter y Kotlin.  
+                    Incluye IMC, quiz matemático y diseño modular.  
+                    Disponible para instalación vía APK.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="tech-pill">FLUTTER</span>
+                    <span class="tech-pill">KOTLIN</span>
+                    <span class="tech-pill">FIREBASE</span>
+                </div>
+
+                <a href="#" class="btn-pixel text-[10px] opacity-50 cursor-not-allowed">
+                    ⏳ APK DISPONIBLE PRONTO
+                </a>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-center relative group opacity-80">
+            <div class="hidden md:block absolute left-1/2 -ml-1 h-40 w-2 bg-arcade-red -top-20 -z-10"></div>
+
+            <div class="w-full md:w-1/2 text-right order-2 md:order-1 pr-0 md:pr-8">
+                <h3 class="text-arcade-red text-sm md:text-lg mb-2">
+                    LEVEL 3-3: DIARIO EL LÍDER (LOCKED)
+                </h3>
+
+                <p class="text-[10px] md:text-xs text-gray-400 leading-relaxed mb-4">
+                    Sistema editorial completo con roles, panel admin,  
+                    CRUDs, métricas, Azure SQL y backend en .NET 9.  
+                    Proyecto privado disponible solo en demostración.
+                </p>
+
+                <div class="flex flex-wrap justify-end gap-2 mb-4">
+                    <span class="tech-pill">.NET 9</span>
+                    <span class="tech-pill">SQL SERVER</span>
+                    <span class="tech-pill">DOCKER</span>
+                </div>
+
+                <button class="btn-pixel text-[10px] bg-gray-700 cursor-not-allowed">
+                    🔒 NIVEL EN DEMO PRIVADA
+                </button>
+            </div>
+
+            <div class="w-full md:w-1/2 order-1 md:order-2">
+                <div class="girder-window">
+                    <div class="bg-black border-2 border-arcade-blue p-4 h-32 flex items-center justify-center opacity-60">
+                        <span class="text-arcade-blue text-[8px]">LOCKED PREVIEW</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="skills" class="max-w-4xl mx-auto pt-10">
+        <div class="border-4 border-white p-1 bg-black">
+            <div class="border-2 border-white p-6 relative">
+                <h3 class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-black px-4 text-arcade-red">INVENTORY (SKILLS)</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-4">
+                    <div>
+                        <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">BACKEND</h4>
+                        <ul class="text-[10px] space-y-3 text-arcade-cyan">
+                            <li>.NET / C#</li>
+                            <li>SQL SERVER</li>
+                            <li>NODE.JS</li>
+                            <li>APIs REST</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">MOBILE & FRONT</h4>
+                        <ul class="text-[10px] space-y-3 text-arcade-cyan">
+                            <li>FLUTTER / DART</li>
+                            <li>KOTLIN</li>
+                            <li>TAILWIND CSS</li>
+                            <li>REACT NATIVE (POC)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">INFRA</h4>
+                        <ul class="text-[10px] space-y-3 text-arcade-cyan">
+                            <li>DOCKER</li>
+                            <li>LINUX (UBUNTU)</li>
+                            <li>FIREBASE</li>
+                            <li>GIT</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="text-center pt-10">
+        <div class="girder-window p-10 max-w-2xl mx-auto animate-pulse-slow">
+            <p class="text-arcade-red text-lg mb-6 blink">GAME OVER</p>
+            <p class="text-white text-xs mb-8">¿QUIERES CONTINUAR?<br>INSERTA UNA MONEDA O CONTACTA AL DEV</p>
+            
+            <div class="flex justify-center gap-4">
+                <a href="mailto:tuemail@gmail.com" class="btn-pixel">EMAIL</a>
+                <a href="https://linkedin.com" target="_blank" class="btn-pixel">LINKEDIN</a>
+                <a href="https://github.com" target="_blank" class="btn-pixel">GITHUB</a>
+            </div>
+        </div>
+        <p class="text-[8px] text-gray-600 mt-12">© 2025 SEBASTIÁN LEÓN • ANALISTA PROGRAMADOR</p>
+    </section>
+
+</main>
+
+<script src="js/animations.js"></script>
+
+</body>
+</html>
