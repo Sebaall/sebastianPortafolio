@@ -314,3 +314,35 @@ body {
         height: 520px !important;
     }
 }
+
+@media (max-width: 480px) {
+
+    .border-\[8px\] {
+        transform: scale(0.75);
+        transform-origin: top center;
+        height: 420px !important;
+        width: 230px !important;
+    }
+
+    .arcade-gallery {
+        height: 100% !important;
+    }
+
+    #gallery-1, #gallery-2, #gallery-3 {
+        height: 100% !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .border-\[8px\] {
+        transform: scale(0.9);
+        transform-origin: top center;
+        height: 500px !important;
+        width: 260px !important;
+    }
+
+    .arcade-gallery {
+        height: 100% !important;
+    }
+}
