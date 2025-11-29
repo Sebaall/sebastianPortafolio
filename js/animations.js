@@ -1,6 +1,3 @@
-/**********************
- * ESTADOS DEL JUEGO
- **********************/
 const STATE_START = 'START';
 const STATE_PLAYING = 'PLAYING';
 const STATE_GAMEOVER = 'GAMEOVER';
@@ -17,17 +14,10 @@ const gameOverScreen = document.getElementById('game-over-screen');
 const finalScoreText = document.getElementById('final-score');
 
 let barrelScored = false;
-
-/**********************
- * VELOCIDAD DEL BARRIL
- **********************/
 let barrelSpeed = 3;      
 let minSpeed = 1.2;       
 let speedIncrease = 0.25;
 
-/**********************
- * CUANDO EL BARRIL TERMINA SU CICLO
- **********************/
 barrel.addEventListener("animationiteration", () => {
 
     barrelScored = false;
@@ -41,9 +31,6 @@ barrel.addEventListener("animationiteration", () => {
     barrel.style.animation = `move-barrel ${barrelSpeed}s linear infinite`;
 });
 
-/**********************
- * INPUT
- **********************/
 function handleInput(event) {
     if (event) event.stopPropagation();
 
@@ -51,9 +38,6 @@ function handleInput(event) {
     if (gameState === STATE_PLAYING) return playerJump();
 }
 
-/**********************
- * INICIAR JUEGO
- **********************/
 function initGame() {
     gameState = STATE_PLAYING;
 
@@ -73,19 +57,12 @@ function initGame() {
     gameLoop = setInterval(gameTick, 15);
 }
 
-/**********************
- * SALTO
- **********************/
 function playerJump() {
     if (mario.classList.contains("jump-now")) return;
 
     mario.classList.add("jump-now");
     setTimeout(() => mario.classList.remove("jump-now"), 550);
 }
-
-/**********************
- * LOOP
- **********************/
 function gameTick() {
     if (gameState !== STATE_PLAYING) return;
 
@@ -93,9 +70,6 @@ function gameTick() {
     checkBarrelScore();
 }
 
-/**********************
- * PUNTOS
- **********************/
 function checkBarrelScore() {
     const b = barrel.getBoundingClientRect();
     const m = mario.getBoundingClientRect();
@@ -106,10 +80,6 @@ function checkBarrelScore() {
         barrelScored = true;
     }
 }
-
-/**********************
- * COLISIÓN
- **********************/
 function checkCollision() {
     const m = mario.getBoundingClientRect();
     const b = barrel.getBoundingClientRect();
@@ -120,30 +90,22 @@ function checkCollision() {
     if (overlapX && overlapY) triggerGameOver();
 }
 
-/**********************
- * GAME OVER
- **********************/
+
 function triggerGameOver() {
     gameState = STATE_GAMEOVER;
 
     clearInterval(gameLoop);
-
     barrel.style.animation = "none";
     barrel.style.opacity = "0";
-    barrel.style.left = "-120px";  // 🔥 lo sacamos de pantalla
+    barrel.style.left = "-120px"; 
 
     finalScoreText.innerText = String(score).padStart(4, "0");
 
     gameOverScreen.style.display = "flex";
 }
 
-/**********************
- * REINICIAR
- **********************/
 function resetGame(event) {
     if (event) event.stopPropagation();
-
-    // 🔥 Antes de iniciar, asegurar que el barril siga oculto
     barrel.style.animation = "none";
     barrel.style.opacity = "0";
     barrel.style.left = "-120px";
@@ -151,23 +113,15 @@ function resetGame(event) {
     initGame();
 }
 
-/**********************
- * REINICIAR ANIMACIÓN
- **********************/
 function resetBarrelPosition() {
-
-    // 🔥 Mostrar barril nuevamente al iniciar
     barrel.style.opacity = "1";
-    barrel.style.left = "";  // vuelve a posición CSS inicial
+    barrel.style.left = "";  
 
     barrel.style.animation = "none";
     barrel.offsetHeight;
     barrel.style.animation = `move-barrel ${barrelSpeed}s linear infinite`;
 }
 
-/**********************
- * TECLADO
- **********************/
 document.addEventListener("keydown", (event) => {
     if (event.code === "Space" || event.code === "ArrowUp") {
         event.preventDefault();
