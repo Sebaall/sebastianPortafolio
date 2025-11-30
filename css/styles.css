@@ -346,3 +346,37 @@ body {
         height: 100% !important;
     }
 }
+
+@keyframes rollAcross {
+    0% { transform: translateX(-10vw) rotate(0deg); }
+    100% { transform: translateX(100vw) rotate(720deg); }
+}
+
+.animate-barrel-roll {
+    animation: rollAcross 8s linear infinite;
+}
+
+.animate-bounce-slow {
+    animation: bounce-slow 3s infinite;
+}
+
+@keyframes bounce-slow {
+    0%, 100% { 
+        transform: translateY(-25%); 
+        animation-timing-function: cubic-bezier(0.8,0,1,1); 
+    }
+    50% { 
+        transform: none; 
+        animation-timing-function: cubic-bezier(0,0,0.2,1); 
+    }
+}
+
+@keyframes lava-jump {
+    0% { bottom: -20px; transform: scale(1); }
+    50% { bottom: 100px; transform: scale(1.1); } /* Altura del salto */
+    100% { bottom: -20px; transform: scale(1); }
+}
+
+.animate-lava-jump {
+    animation: lava-jump 4s ease-in-out infinite;
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,400 +13,545 @@
 
 <body class="bg-arcade-black text-white font-pixel overflow-x-hidden selection:bg-arcade-red selection:text-white">
 
-<div class="scanlines"></div>
+    <div class="scanlines"></div>
 
-<header class="fixed top-0 left-0 w-full z-[9999] bg-black border-b-4 border-arcade-red shadow-lg bg-opacity-95 backdrop-blur-sm">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
-        
-        <div class="flex items-center gap-6 text-xs md:text-sm w-full md:w-auto justify-between md:justify-start">
-            <div class="blink-slow text-arcade-red font-bold">1UP</div>
-            <div class="text-white"><a href="index.html">GUEST PLAYER</a></div>
-            <div class="text-arcade-cyan">SCORE: <span id="arcade-score" class="text-white">0000</span></div> 
-        </div>
+    <header class="fixed top-0 left-0 w-full z-[9999] bg-black border-b-4 border-arcade-red shadow-lg bg-opacity-95 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
 
-        <nav class="flex gap-4 md:gap-8 text-[10px] md:text-xs text-arcade-peach w-full md:w-auto justify-center">
-            <a href="#home" class="hover:text-white hover:scale-110 transition-transform">INICIO</a>
-            <a href="#projects" class="hover:text-white hover:scale-110 transition-transform">LEVELS</a>
-            <a href="#about" class="hover:text-white hover:scale-110 transition-transform">PLAYER</a>
-            <a href="#skills" class="hover:text-white hover:scale-110 transition-transform">INVENTORY</a>
-            <a href="#contact" class="hover:text-white hover:scale-110 transition-transform">CRÉDITOS</a>
-            
-        </nav>
-    </div>
-</header>
-
-<main class="relative pb-20 px-4 md:px-0 max-w-5xl mx-auto space-y-32">
-
-<section id="home" class="text-center min-h-[80vh] flex flex-col justify-start items-center relative pt-40 md:pt-48 pb-32">
-        
-        <div class="z-10 mb-10">
-            <h1 class="text-4xl md:text-6xl text-arcade-red glow-red shadow-title mb-6 tracking-wider">
-                Sebastián León
-            </h1>
-            <p class="text-arcade-cyan text-xs md:text-sm tracking-widest bg-black bg-opacity-70 p-2 inline-block border border-arcade-blue">
-                Desarrollador • CHILE
-            </p>
-        </div>
-
-        <div onclick="handleInput(event)" class="cursor-pointer girder-stage relative h-64 w-full max-w-3xl border-b-8 border-arcade-red mt-4 bg-pattern-grid overflow-hidden">
-            
-            <div id="start-screen" onclick="initGame(event)" style="display: flex;" 
-                class="absolute inset-0 z-40 bg-black bg-opacity-80 flex-col items-center justify-center text-center cursor-pointer hover:bg-opacity-70 transition-all">
-
-                <h2 class="text-arcade-red text-sm md:text-xl mb-4 blink">INSERT COIN</h2>
-
-                <div class="btn-soft px-4 py-2">
-                    <p class="text-white text-[10px] md:text-xs animate-pulse">HAZ CLIC AQUÍ PARA JUGAR</p>
+            <div class="flex items-center gap-6 text-xs md:text-sm w-full md:w-auto justify-between md:justify-start">
+                <div class="blink-slow text-arcade-red font-bold">1UP</div>
+                <div class="text-white">
+                    <a href="index.html">GUEST PLAYER</a>
+                </div>
+                <div class="text-arcade-cyan">
+                    SCORE: <span id="arcade-score" class="text-white">0000</span>
                 </div>
             </div>
 
-            <div id="game-over-screen" style="display: none;" 
-                class="hidden absolute inset-0 z-50 bg-black bg-opacity-90 flex-col items-center justify-center text-center">
+            <nav class="flex gap-4 md:gap-8 text-[10px] md:text-xs text-arcade-peach w-full md:w-auto justify-center">
+                <a href="#home" class="hover:text-white hover:scale-110 transition-transform">INICIO</a>
+                <a href="#projects" class="hover:text-white hover:scale-110 transition-transform">LEVELS</a>
+                <a href="#about" class="hover:text-white hover:scale-110 transition-transform">PLAYER</a>
+                <a href="#skills" class="hover:text-white hover:scale-110 transition-transform">INVENTORY</a>
+                <a href="#contact" class="hover:text-white hover:scale-110 transition-transform">CRÉDITOS</a>
+            </nav>
 
-                <h2 class="text-arcade-red text-2xl mb-4 blink">GAME OVER</h2>
-                <p class="text-white text-xs mb-6">PUNTAJE FINAL: <span id="final-score">0</span></p>
-
-                <button onclick="resetGame(event)" class="btn-pixel btn-soft text-xs">
-                    ↻ REINTENTAR
-                </button>
-            </div>
-
-            <div class="ladder absolute bottom-0 left-10 h-full w-12 opacity-80"></div>
-            <div class="ladder absolute bottom-0 right-10 h-40 w-12 opacity-80"></div>
-            <div class="ladder absolute bottom-20 left-1/2 h-32 w-12 opacity-80 -translate-x-1/2"></div>
-            <div class="absolute bottom-20 left-1/3 right-1/3 h-4 bg-arcade-red border-y-2 border-black"></div>
-
-            <img src="img/dk.png" 
-                 class="absolute top-10 left-10 w-24 md:w-32 dk-rage" 
-                 alt="Donkey Kong">
-                 
-            <img id="mario-character" 
-                src="img/mario.png" 
-                class="absolute bottom-0 right-10 md:right-14 w-10 md:w-14" 
-                alt="Mario">
-
-            <div id="killer-barrel" class="barrel barrel-roll"></div>
         </div>
-    </section>
+    </header>
 
-    <section id="projects" class="space-y-32 scroll-mt-24">
 
-    <div class="text-center mb-16">
-        <h2><a href="#projects" class="text-arcade-blue text-xl md:text-2xl mb-2">SELECT LEVEL</a></h2>
-        <div class="w-24 h-1 bg-arcade-blue mx-auto"></div>
-    </div>
+    <main class="relative pb-20 px-4 md:px-0 max-w-5xl mx-auto space-y-32">
 
-    <div class="flex flex-col md:flex-row gap-12 items-center relative group">
-        <div class="hidden md:block absolute left-1/2 -ml-1 h-full w-2 bg-arcade-cyan -top-10 -z-10 opacity-30"></div>
+        <section id="home" class="text-center min-h-screen flex flex-col justify-start items-center relative pt-40 md:pt-48 pb-32">
 
-        <div class="w-full md:w-1/2 text-right order-2 md:order-1 pr-0 md:pr-8">
-            <h3 class="text-arcade-red text-sm md:text-lg mb-2 font-bold tracking-wider group-hover:text-arcade-peach transition-colors">
-                LEVEL 1-1: RECICLAMAP
-            </h3>
-
-            <p class="text-[10px] md:text-xs text-gray-300 leading-relaxed mb-4 font-pixel font-thin">
-                Mapa interactivo nacional con puntos de reciclaje actualizados (Comuna de Los Ángeles).  
-                Geolocalización y markers personalizados.  
-                MVP desplegado en Firebase Hosting.
-            </p>
-
-            <div class="flex flex-wrap justify-end gap-2 mb-6">
-                <span class="tech-pill">LEAFLET</span>
-                <span class="tech-pill">FIREBASE HOSTING</span>
-                <span class="tech-pill">JAVASCRIPT</span>
-                <span class="tech-pill">HTML</span>
-                <span class="tech-pill">CSS</span>
+            <div class="z-10 mb-10">
+                <h1 class="text-4xl md:text-6xl text-arcade-red glow-red shadow-title mb-6 tracking-wider">
+                    Sebastián León
+                </h1>
+                <p class="text-arcade-cyan text-xs md:text-sm tracking-widest bg-black bg-opacity-70 p-2 inline-block border border-arcade-blue">
+                    Desarrollador • CHILE
+                </p>
             </div>
 
-            <a href="https://webapp-medioambiente.web.app" target="_blank" class="btn-pixel text-[10px] inline-block transition-transform hover:scale-105">
-                ▶ JUGAR NIVEL
-            </a>
-        </div>
+            <div onclick="handleInput(event)" class="cursor-pointer girder-stage relative h-64 w-full max-w-3xl border-b-8 border-arcade-red mt-4 bg-pattern-grid overflow-hidden">
 
-        <div class="w-full md:w-1/2 order-1 md:order-2 flex justify-center md:justify-start">
-            <div class="relative border-gray-900 bg-gray-900 border-[8px] rounded-[3rem] h-[600px] w-[300px] shadow-2xl flex flex-col items-center transform group-hover:scale-[1.02] transition-transform duration-500">
-                
-                <div class="absolute top-4 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-black rounded-b-xl z-20 flex justify-center items-center space-x-2 shadow-sm">
-                    <div class="w-10 h-1 bg-gray-800 rounded-full"></div>
-                    <div class="w-1.5 h-1.5 bg-blue-900/50 rounded-full"></div>
-                </div>
-
-                <div class="absolute -right-[8px] top-24 w-[8px] h-10 bg-gray-800 rounded-r-md"></div>
-                <div class="absolute -left-[8px] top-24 w-[8px] h-16 bg-gray-800 rounded-l-md"></div>
-            <div class="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative z-10 border border-gray-800">
-                <div class="arcade-gallery p-0 h-full w-full relative" id="gallery-1">
-                    
-                    <img src="img/Reciclemap.jpg" class="slide active object-contain h-full w-full" alt="R1">
-                    <img src="img/reciclemap2.jpg" class="slide object-contain h-full w-full" alt="R2">
-                    <img src="img/reciclemap3.jpg" class="slide object-contain h-full w-full" alt="R3">
-
-                    <button class="prev-btn absolute left-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/20 hover:bg-black/60 rounded-full p-2 transition-all z-30">◀</button>
-                    <button class="next-btn absolute right-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/20 hover:bg-black/60 rounded-full p-2 transition-all z-30">▶</button>
-                </div>
-                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/20 rounded-full z-20"></div>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-12 items-center relative group">
-        <div class="hidden md:block absolute left-1/2 -ml-1 h-full w-2 bg-arcade-cyan -top-10 -z-10 opacity-30"></div>
-
-        <div class="w-full md:w-1/2 order-1 flex justify-center md:justify-end">
-             <div class="relative border-gray-900 bg-gray-900 border-[8px] rounded-[3rem] h-[600px] w-[300px] shadow-2xl flex flex-col items-center transform group-hover:scale-[1.02] transition-transform duration-500">
-                
-                <div class="absolute top-4 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-black rounded-b-xl z-20 flex justify-center items-center space-x-2 shadow-sm">
-                    <div class="w-10 h-1 bg-gray-800 rounded-full"></div>
-                    <div class="w-1.5 h-1.5 bg-blue-900/50 rounded-full"></div>
-                </div>
-
-                <div class="absolute -right-[8px] top-24 w-[8px] h-10 bg-gray-800 rounded-r-md"></div>
-                <div class="absolute -left-[8px] top-24 w-[8px] h-16 bg-gray-800 rounded-l-md"></div>
-
-                <div class="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative z-10 border border-gray-800">
-                <div class="arcade-gallery p-0 h-full w-full relative" id="gallery-2">
-                    
-                    <img src="img/n1.jpg" class="slide active object-contain h-full w-full" alt="N1">
-                    <img src="img/n2.jpg" class="slide object-contain h-full w-full" alt="N2">
-
-                    <button class="prev-btn absolute left-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/20 hover:bg-black/60 rounded-full p-2 transition-all z-30">◀</button>
-                    <button class="next-btn absolute right-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/20 hover:bg-black/60 rounded-full p-2 transition-all z-30">▶</button>
-                </div>
-                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/20 rounded-full z-20"></div>
-            </div>
-            </div>
-        </div>
-
-        <div class="w-full md:w-1/2 pl-0 md:pl-8 order-2">
-            <h3 class="text-arcade-red text-sm md:text-lg mb-2 font-bold tracking-wider group-hover:text-arcade-peach transition-colors">
-                LEVEL 2-2: NUMERIX
-            </h3>
-
-            <p class="text-[10px] md:text-xs text-gray-300 leading-relaxed mb-4 font-pixel font-thin">
-                App móvil creada Kotlin.  
-                Incluye Quiz matematico para colegios, gestion de perfiles, roles.  
-                Disponible para instalación vía APK.
-            </p>
-
-            <div class="flex flex-wrap gap-2 mb-6">
-                <span class="tech-pill">KOTLIN</span>
-                <span class="tech-pill">FIREBASE</span>
-                <span class="tech-pill">FIREBASE AUTH</span>
-                <span class="tech-pill">RENDER</span>
-                <span class="tech-pill">JS</span>
-            </div>
-
-            <a href="https://drive.usercontent.google.com/download?id=1jV8J6WXcZAieFZytjKNeT4eMqWSm3gD2&export=download" target="_blank" class="btn-pixel text-[10px] inline-block transition-transform hover:scale-105">
-                ▶ JUGAR NIVEL
-            </a>
-        </div>
-    </div>
-
- <div class="flex flex-col md:flex-row gap-12 items-center relative group opacity-80 hover:opacity-100 transition-opacity">
-        <div class="hidden md:block absolute left-1/2 -ml-1 h-full w-2 bg-arcade-red -top-10 -z-10 opacity-30"></div>
-
-        <div class="w-full md:w-1/2 text-right order-2 md:order-1 pr-0 md:pr-8">
-            <h3 class="text-arcade-red text-sm md:text-lg mb-2 font-bold tracking-wider">
-                LEVEL 3-3: EL LÍDER (LOCKED)
-            </h3>
-
-            <p class="text-[10px] md:text-xs text-gray-400 leading-relaxed mb-4 font-pixel font-thin">
-                Sistema editorial completo con roles, panel admin,  
-                CRUDs, métricas, Azure SQL y backend en .NET 9.  
-                Proyecto privado disponible solo en demostración.
-            </p>
-
-            <div class="flex flex-wrap justify-end gap-2 mb-6">
-                <span class="tech-pill">.NET 9</span>
-                <span class="tech-pill">SQL SERVER</span>
-                <span class="tech-pill">DOCKER</span>
-                <span class="tech-pill">IDENTITY</span>
-                <span class="tech-pill">RENDER</span>
-                <span class="tech-pill">BOOTSTRAP 5</span>
-                <span class="tech-pill">SWEET ALERT2</span>
-                <span class="tech-pill">CHART JS</span>
-                <span class="tech-pill">DATA TABLES.JS</span>
-            </div>
-
-            <button class="btn-pixel text-[10px] bg-gray-700 cursor-not-allowed border-gray-600">
-                🔒 NIVEL EN DEMO PRIVADA
-            </button>
-        </div>
-
-        <div class="w-full md:w-1/2 order-1 md:order-2 flex flex-col items-center pl-0 md:pl-8">
-            <div class="relative bg-gray-700 rounded-t-lg border-[6px] border-gray-700 p-1 shadow-lg w-full max-w-[550px]">
-                <div class="absolute top-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-gray-900 rounded-full mb-1"></div>
-                
-                <div class="bg-black border-4 border-gray-600 rounded overflow-hidden relative aspect-video mt-2" id="gallery-3">
-                    
-                    <img src="img/lider1.jpg" class="slide active opacity-60 object-contain w-full h-full" alt="L1">
-                    <img src="img/lider2.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L2">
-                    <img src="img/lider3.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L3">
-                    <img src="img/lider4.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L4">
-                    <img src="img/lider5.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L5">
-                    <img src="img/Lider6.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L6">
-                    <img src="img/lider7.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L7">
-                    <img src="img/lider8.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L8">
-                    <img src="img/lider9.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L9">
-                    <img src="img/lider10.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L10">
-
-                    <button class="prev-btn absolute left-0 top-0 h-full w-8 hover:bg-white/10 text-white z-30 transition-colors">◀</button>
-                    <button class="next-btn absolute right-0 top-0 h-full w-8 hover:bg-white/10 text-white z-30 transition-colors">▶</button>
-                    
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <span class="text-arcade-red text-[8px] animate-pulse bg-black px-2 py-1 border border-arcade-red font-pixel">ACCESS DENIED</span>
+                <div id="start-screen" onclick="initGame(event)" style="display: flex;"
+                    class="absolute inset-0 z-40 bg-black bg-opacity-80 flex-col items-center justify-center text-center cursor-pointer hover:bg-opacity-70 transition-all">
+                    <h2 class="text-arcade-red text-sm md:text-xl mb-4 blink">INSERT COIN</h2>
+                    <div class="btn-soft px-4 py-2">
+                        <p class="text-white text-[10px] md:text-xs animate-pulse">HAZ CLIC AQUÍ PARA JUGAR</p>
                     </div>
                 </div>
-                <div class="text-center mt-1"><span class="text-[6px] text-gray-400 font-bold tracking-widest">THINKPAD-95</span></div>
+
+                <div id="game-over-screen" style="display: none;"
+                    class="hidden absolute inset-0 z-50 bg-black bg-opacity-90 flex-col items-center justify-center text-center">
+                    <h2 class="text-arcade-red text-2xl mb-4 blink">GAME OVER</h2>
+                    <p class="text-white text-xs mb-6">
+                        PUNTAJE FINAL: <span id="final-score">0</span>
+                    </p>
+                    <button onclick="resetGame(event)" class="btn-pixel btn-soft text-xs">↻ REINTENTAR</button>
+                </div>
+
+                <div class="ladder absolute bottom-0 left-10 h-full w-12 opacity-80"></div>
+                <div class="ladder absolute bottom-0 right-10 h-40 w-12 opacity-80"></div>
+                <div class="ladder absolute bottom-20 left-1/2 h-32 w-12 opacity-80 -translate-x-1/2"></div>
+
+                <div class="absolute bottom-20 left-1/3 right-1/3 h-4 bg-arcade-red border-y-2 border-black"></div>
+
+                <img src="img/dk.png" class="absolute top-10 left-10 w-24 md:w-32 dk-rage" alt="Donkey Kong">
+
+                <img id="mario-character" src="img/mario.png"
+                    class="absolute bottom-0 right-10 md:right-14 w-10 md:w-14" alt="Mario">
+
+                <div id="killer-barrel" class="barrel barrel-roll"></div>
+
             </div>
-            
-            <div class="relative bg-gray-800 rounded-b-xl h-4 w-full max-w-[600px] -mt-1 shadow-2xl border-t border-gray-900">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-gray-600 rounded-b-md"></div>
+        </section>
+
+        <div class="w-full h-24 relative overflow-hidden my-10 flex items-center bg-black border-y-4 border-arcade-red/50 pointer-events-none">
+            <div class="absolute inset-0 opacity-20" style="background-image: repeating-linear-gradient(45deg, #ff0000 0, #ff0000 2px, transparent 0, transparent 10px);"></div>
+            <div class="animate-barrel-roll absolute left-0 bottom-2 z-10">
+                <img src="img/barrel.png" class="w-12 md:w-16 drop-shadow-lg" alt="Barrel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="hidden w-12 h-12 bg-amber-700 rounded-full border-4 border-black flex items-center justify-center text-[8px] font-bold text-white shadow-lg">DK</div>
             </div>
-             <div class="w-[80%] h-4 bg-black opacity-30 rounded-full mt-4 blur-md"></div>
-        </div>
-    </div>
+<div class="absolute right-10 top-3 text-[10px] text-arcade-red blink opacity-70 hidden md:block z-0">⚠ DANGER ZONE ⚠
 
-</section>
-
+</div>        
+</div>
 
 
-<section id="about" class="space-y-32 scroll-mt-24">
-        <div class="text-center mb-10">
-            <h2 class="text-arcade-blue text-xl md:text-2xl mb-2">WHO IS PLAYING?</h2>
-            <div class="w-24 h-1 bg-arcade-blue mx-auto"></div>
-        </div>
+        <section id="projects" class="space-y-32 scroll-mt-24">
 
-        <div class="border-4 border-white p-1 bg-black mx-4 md:mx-0">
-            <div class="border-2 border-white p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
-                
-                <div class="absolute inset-0 bg-arcade-blue/5 pointer-events-none"></div>
+            <div class="text-center mb-16">
+                <h2>
+                    <a href="#projects" class="text-arcade-blue text-xl md:text-2xl mb-2">SELECT LEVEL</a>
+                </h2>
+                <div class="w-24 h-1 bg-arcade-blue mx-auto"></div>
+            </div>
 
-                <div class="relative group shrink-0">
-                    <div class="w-40 h-40 md:w-48 md:h-48 border-4 border-arcade-red p-1 bg-black shadow-[0_0_15px_rgba(255,0,0,0.5)]">
-                        <div class="w-full h-full overflow-hidden bg-gray-800 relative">
-                            <img src="img/Yos.jpg" 
-                                 alt="Sebastián León" 
-                                 class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                             <div class="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
+            <div class="flex flex-col md:flex-row gap-12 items-center relative group">
+
+                <div class="hidden md:block absolute left-1/2 -ml-1 h-full w-2 bg-arcade-cyan -top-10 -z-10 opacity-30">
+                </div>
+
+                <div class="w-full md:w-1/2 text-right order-2 md:order-1 pr-0 md:pr-8">
+
+                    <h3 class="text-arcade-red text-sm md:text-lg mb-2 font-bold tracking-wider group-hover:text-arcade-peach transition-colors">
+                        LEVEL 1-1: RECICLAMAP
+                    </h3>
+
+                    <p class="text-[10px] md:text-xs text-gray-300 leading-relaxed mb-4 font-pixel font-thin">
+                        Mapa interactivo nacional con puntos de reciclaje actualizados (Comuna de Los Ángeles).
+                        Geolocalización y markers personalizados.
+                        MVP desplegado en Firebase Hosting.
+                    </p>
+
+                    <div class="flex flex-wrap justify-end gap-2 mb-6">
+                        <span class="tech-pill">LEAFLET</span>
+                        <span class="tech-pill">FIREBASE HOSTING</span>
+                        <span class="tech-pill">JAVASCRIPT</span>
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                    </div>
+
+                    <a href="https://webapp-medioambiente.web.app" target="_blank"
+                        class="btn-pixel text-[10px] inline-block transition-transform hover:scale-105">
+                        ▶ JUGAR NIVEL
+                    </a>
+
+                </div>
+
+                <div class="w-full md:w-1/2 order-1 md:order-2 flex justify-center md:justify-start">
+
+                    <div class="relative border-gray-900 bg-gray-900 border-[8px] rounded-[3rem] h-[600px] w-[300px] shadow-2xl flex flex-col items-center transform group-hover:scale-[1.02] transition-transform duration-500">
+
+                        <div class="absolute top-4 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-black rounded-b-xl z-20 flex justify-center items-center space-x-2 shadow-sm">
+                            <div class="w-10 h-1 bg-gray-800 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-blue-900/50 rounded-full"></div>
                         </div>
+
+                        <div class="absolute -right-[8px] top-24 w-[8px] h-10 bg-gray-800 rounded-r-md"></div>
+                        <div class="absolute -left-[8px] top-24 w-[8px] h-16 bg-gray-800 rounded-l-md"></div>
+
+                        <div class="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative z-10 border border-gray-800">
+
+                            <div class="arcade-gallery p-0 h-full w-full relative" id="gallery-1">
+
+                                <img src="img/Reciclemap.jpg" class="slide active object-contain h-full w-full" alt="R1">
+                                <img src="img/reciclemap2.jpg" class="slide object-contain h-full w-full" alt="R2">
+                                <img src="img/reciclemap3.jpg" class="slide object-contain h-full w-full" alt="R3">
+
+                                <button class="prev-btn absolute left-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/20 hover:bg-black/60 rounded-full p-2 transition-all z-30">
+                                    ◀
+                                </button>
+                                <button class="next-btn absolute right-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/20 hover:bg-black/60 rounded-full p-2 transition-all z-30">
+                                    ▶
+                                </button>
+
+                            </div>
+
+                            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/20 rounded-full z-20"></div>
+
+                        </div>
+
                     </div>
-                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-black px-3 py-1 border border-arcade-red text-[8px] text-arcade-red font-bold tracking-widest uppercase whitespace-nowrap">
-                        PLAYER 1 READY
-                    </div>
+
                 </div>
 
-                <div class="flex-1 text-center md:text-left z-10">
-                    <div class="mb-4">
-                        <h3 class="text-2xl md:text-3xl text-white mb-1">SEBASTIÁN LEÓN</h3>
-                        <p class="text-arcade-cyan text-[10px] md:text-xs tracking-widest border-b border-gray-700 pb-2 inline-block md:block">
-                            Desarrollador • Chile
-                        </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12 items-center relative group">
+
+                <div class="hidden md:block absolute left-1/2 -ml-1 h-full w-2 bg-arcade-cyan -top-10 -z-10 opacity-30"></div>
+
+                <div class="w-full md:w-1/2 order-1 flex justify-center md:justify-end">
+
+                    <div class="relative border-gray-900 bg-gray-900 border-[8px] rounded-[3rem] h-[600px] w-[300px] shadow-2xl flex flex-col items-center transform group-hover:scale-[1.02] transition-transform duration-500">
+
+                        <div class="absolute top-4 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-black rounded-b-xl z-20 flex justify-center items-center space-x-2 shadow-sm">
+                            <div class="w-10 h-1 bg-gray-800 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-blue-900/50 rounded-full"></div>
+                        </div>
+
+                        <div class="absolute -right-[8px] top-24 w-[8px] h-10 bg-gray-800 rounded-r-md"></div>
+                        <div class="absolute -left-[8px] top-24 w-[8px] h-16 bg-gray-800 rounded-l-md"></div>
+
+                        <div class="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative z-10 border border-gray-800">
+
+                            <div class="arcade-gallery p-0 h-full w-full relative" id="gallery-2">
+
+                                <img src="img/n1.jpg" class="slide object-contain h-full w-full" alt="N1">
+                                <img src="img/n2.jpg" class="slide object-contain h-full w-full" alt="N2">
+                                <img src="img/n3.jpg" class="slide object-contain h-full w-full" alt="N3">
+                                <img src="img/n4.jpg" class="slide object-contain h-full w-full" alt="N4">
+                                <img src="img/n5.jpg" class="slide object-contain h-full w-full" alt="N5">
+                                <img src="img/n6.jpg" class="slide object-contain h-full w-full" alt="N6">
+                                <img src="img/n7.jpg" class="slide object-contain h-full w-full" alt="N7">
+                                <img src="img/n8.jpg" class="slide object-contain h-full w-full" alt="N8">
+                                <img src="img/n9.jpg" class="slide object-contain h-full w-full" alt="N9">
+                                <img src="img/n10.jpg" class="slide object-contain h-full w-full" alt="N10">
+                                <img src="img/n11.jpg" class="slide object-contain h-full w-full" alt="N11">
+                                <img src="img/n12.jpg" class="slide object-contain h-full w-full" alt="N12">
+                                <img src="img/n13.jpg" class="slide object-contain h-full w-full" alt="N13">
+                                <img src="img/n14.jpg" class="slide object-contain h-full w-full" alt="N14">
+                                <img src="img/n15.jpg" class="slide object-contain h-full w-full" alt="N15">
+
+
+                                <button class="prev-btn absolute left-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/20 hover:bg-black/60 rounded-full p-2 transition-all z-30">
+                                    ◀
+                                </button>
+                                <button class="next-btn absolute right-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/20 hover:bg-black/60 rounded-full p-2 transition-all z-30">
+                                    ▶
+                                </button>
+
+                            </div>
+
+                            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/20 rounded-full z-20"></div>
+
+                        </div>
+
                     </div>
 
-                    <div class="text-[10px] md:text-xs text-gray-300 space-y-3 leading-loose font-thin mb-6 font-sans md:font-pixel">
-                        <p>
-                            > Inicializando biografía...<br>
-                                Soy un nuevo desarrollador y estoy empezando mi carrera. Tengo conocimientos iniciales en desarrollo web, mobile y backend, y me gusta seguir aprendiendo con proyectos propios y académicos.
-                                Busco crecer profesionalmente, mejorar mis habilidades y participar en proyectos donde pueda aportar y seguir aprendiendo.
-                        </p>
-                        <p class="text-arcade-peach">
-                            * Misión actual: Buscar nuevos desafíos profesionales y subir de nivel en el desarrollo de software.
-                        </p>
+                </div>
+
+                <div class="w-full md:w-1/2 pl-0 md:pl-8 order-2">
+
+                    <h3 class="text-arcade-red text-sm md:text-lg mb-2 font-bold tracking-wider group-hover:text-arcade-peach transition-colors">
+                        LEVEL 2-2: NUMERIX
+                    </h3>
+
+                    <p class="text-[10px] md:text-xs text-gray-300 leading-relaxed mb-4 font-pixel font-thin">
+                        App móvil creada Kotlin.
+                        Incluye Quiz matematico para colegios, gestion de perfiles, roles.
+                        Disponible para instalación vía APK.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill">KOTLIN</span>
+                        <span class="tech-pill">FIREBASE</span>
+                        <span class="tech-pill">FIREBASE AUTH</span>
+                        <span class="tech-pill">RENDER</span>
+                        <span class="tech-pill">JS</span>
                     </div>
-                    
-                    <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center">
-                        <a href="docs/cv_sebastianLeon-2.pdf" target="_blank" download class="group relative inline-flex items-center justify-center px-6 py-3 font-pixel text-[10px] text-white transition-all duration-200 bg-arcade-red font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-arcade-red hover:scale-105">
-                            <span class="mr-2 text-lg animate-bounce">▼</span> 
-                            DOWNLOAD CV CARD
-                            <div class="absolute inset-0 border-2 border-white pointer-events-none group-hover:border-dashed"></div>
-                        </a>
-                        
-                        <span class="text-[8px] text-gray-500 animate-pulse">
-                            INSERT COIN TO HIRE
-                        </span>
+
+                    <a href="https://drive.usercontent.google.com/download?id=1jV8J6WXcZAieFZytjKNeT4eMqWSm3gD2&export=download"
+                        target="_blank" class="btn-pixel text-[10px] inline-block transition-transform hover:scale-105">
+                        ▶ JUGAR NIVEL
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12 items-center relative group opacity-80 hover:opacity-100 transition-opacity">
+
+                <div class="hidden md:block absolute left-1/2 -ml-1 h-full w-2 bg-arcade-red -top-10 -z-10 opacity-30"></div>
+
+                <div class="w-full md:w-1/2 text-right order-2 md:order-1 pr-0 md:pr-8">
+
+                    <h3 class="text-arcade-red text-sm md:text-lg mb-2 font-bold tracking-wider">
+                        LEVEL 3-3: EL LÍDER (LOCKED)
+                    </h3>
+
+                    <p class="text-[10px] md:text-xs text-gray-400 leading-relaxed mb-4 font-pixel font-thin">
+                        Sistema editorial completo con roles, panel admin, CRUDs, métricas,
+                        Azure SQL y backend en .NET 9.
+                        Proyecto privado disponible solo en demostración.
+                    </p>
+
+                    <div class="flex flex-wrap justify-end gap-2 mb-6">
+                        <span class="tech-pill">.NET 9</span>
+                        <span class="tech-pill">SQL SERVER</span>
+                        <span class="tech-pill">DOCKER</span>
+                        <span class="tech-pill">IDENTITY</span>
+                        <span class="tech-pill">RENDER</span>
+                        <span class="tech-pill">BOOTSTRAP 5</span>
+                        <span class="tech-pill">SWEET ALERT2</span>
+                        <span class="tech-pill">CHART JS</span>
+                        <span class="tech-pill">DATA TABLES.JS</span>
                     </div>
+
+                    <button class="btn-pixel text-[10px] bg-gray-700 cursor-not-allowed border-gray-600">
+                        🔒 NIVEL EN DEMO PRIVADA
+                    </button>
+
+                </div>
+
+                <div class="w-full md:w-1/2 order-1 md:order-2 flex flex-col items-center pl-0 md:pl-8">
+
+                    <div class="relative bg-gray-700 rounded-t-lg border-[6px] border-gray-700 p-1 shadow-lg w-full max-w-[550px]">
+
+                        <div class="absolute top-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-gray-900 rounded-full mb-1"></div>
+
+                        <div class="bg-black border-4 border-gray-600 rounded overflow-hidden relative aspect-video mt-2"
+                            id="gallery-3">
+
+                            <img src="img/lider1.jpg" class="slide active opacity-60 object-contain w-full h-full" alt="L1">
+                            <img src="img/lider2.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L2">
+                            <img src="img/lider3.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L3">
+                            <img src="img/lider4.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L4">
+                            <img src="img/lider5.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L5">
+                            <img src="img/Lider6.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L6">
+                            <img src="img/lider7.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L7">
+                            <img src="img/lider8.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L8">
+                            <img src="img/lider9.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L9">
+                            <img src="img/lider10.jpg" class="slide opacity-60 object-contain w-full h-full" alt="L10">
+
+                            <button class="prev-btn absolute left-0 top-0 h-full w-8 hover:bg-white/10 text-white z-30 transition-colors">
+                                ◀
+                            </button>
+
+                            <button class="next-btn absolute right-0 top-0 h-full w-8 hover:bg-white/10 text-white z-30 transition-colors">
+                                ▶
+                            </button>
+
+                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <span class="text-arcade-red text-[8px] animate-pulse bg-black px-2 py-1 border border-arcade-red font-pixel">
+                                    ACCESS DENIED
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="text-center mt-1">
+                            <span class="text-[6px] text-gray-400 font-bold tracking-widest">THINKPAD-95</span>
+                        </div>
+
+                    </div>
+
+                    <div class="relative bg-gray-800 rounded-b-xl h-4 w-full max-w-[600px] -mt-1 shadow-2xl border-t border-gray-900">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-gray-600 rounded-b-md"></div>
+                    </div>
+
+                    <div class="w-[80%] h-4 bg-black opacity-30 rounded-full mt-4 blur-md"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="relative h-40 w-full flex justify-center items-end overflow-hidden z-0 pointer-events-none -mt-16">
+            <div class="relative z-10 flex flex-col items-center">
+                 <div class="w-8 h-8 bg-red-600 rounded-full mb-1 animate-bounce-slow border-2 border-white relative top-6 z-0">
+                    <div class="absolute right-1 top-2 w-2 h-2 bg-white rounded-full"></div>
+                    <div class="absolute left-1 top-2 w-2 h-2 bg-white rounded-full"></div>
+                </div>
+                <div class="w-24 h-12 bg-green-600 border-4 border-black shadow-lg relative z-20">
+                    <div class="absolute top-2 left-2 w-2 h-full bg-green-400 opacity-50"></div>
+                </div>
+                <div class="w-20 h-24 bg-green-600 border-x-4 border-black mx-auto relative">
+                    <div class="absolute top-0 left-2 w-2 h-full bg-green-400 opacity-50"></div>
                 </div>
             </div>
         </div>
-        <div class="w-full h-4 bg-black opacity-30 rounded-full mt-4 blur-md"id="skills"></div>
-    </section >
 
-     <section class="max-w-4xl mx-auto pt-10">
-    <div class="border-4 border-white p-1 bg-black">
-        <div class="border-2 border-white p-6 relative">
-            <h3 class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-black px-4 text-arcade-red" ">INVENTORY (SKILLS)</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center mt-4">
-                
-                <div>
-                    <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">BACKEND</h4>
-                    <ul class="text-[10px] space-y-3 text-arcade-cyan">
-                        <li>.NET / C#</li>
-                        <li>SQL SERVER</li>
-                        <li>NODE.JS</li>
-                        <li>APIs REST</li>
-                        <li>IDENTITY (AUTH)</li>
-                    </ul>
+
+        <section id="about" class="min-h-screen space-y-32 scroll-mt-22 flex flex-col justify-center">
+
+            <div class="text-center mb-10">
+                <h2 class="text-arcade-blue text-xl md:text-2xl mb-2">WHO IS PLAYING?</h2>
+                <div class="w-24 h-1 bg-arcade-blue mx-auto"></div>
+            </div>
+
+            <div class="border-4 border-white p-1 bg-black mx-4 md:mx-0">
+
+                <div class="border-2 border-white p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
+
+                    <div class="absolute inset-0 bg-arcade-blue/5 pointer-events-none"></div>
+
+                    <div class="relative group shrink-0">
+
+                        <div class="w-40 h-40 md:w-48 md:h-48 border-4 border-arcade-red p-1 bg-black shadow-[0_0_15px_rgba(255,0,0,0.5)]">
+
+                            <div class="w-full h-full overflow-hidden bg-gray-800 relative">
+                                <img src="img/Yos.jpg" alt="Sebastián León"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-black px-3 py-1 border border-arcade-red text-[8px] text-arcade-red font-bold tracking-widest uppercase whitespace-nowrap">
+                            PLAYER 1 READY
+                        </div>
+
+                    </div>
+
+                    <div class="flex-1 text-center md:text-left z-10">
+
+                        <div class="mb-4">
+                            <h3 class="text-2xl md:text-3xl text-white mb-1">SEBASTIÁN LEÓN</hh3>
+                            <p class="text-arcade-cyan text-[10px] md:text-xs tracking-widest border-b border-gray-700 pb-2 inline-block md:block">
+                                Desarrollador • Chile
+                            </p>
+                        </div>
+
+                        <div class="text-[10px] md:text-xs text-gray-300 space-y-3 leading-loose font-thin mb-6 font-sans md:font-pixel">
+                            <p>
+                                > Inicializando biografía...<br>
+                                Soy un nuevo desarrollador y estoy empezando mi carrera.
+                                Tengo conocimientos iniciales en desarrollo web, mobile y backend,
+                                y me gusta seguir aprendiendo con proyectos propios y académicos.
+                                Busco crecer profesionalmente, mejorar mis habilidades y participar
+                                en proyectos donde pueda aportar y seguir aprendiendo.
+                            </p>
+                            <p class="text-arcade-peach">
+                                * Misión actual: Buscar nuevos desafíos profesionales y subir de nivel en el desarrollo de software.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center">
+
+                            <a href="docs/cv_sebastianLeon-2.pdf" target="_blank" download
+                                class="group relative inline-flex items-center justify-center px-6 py-3 font-pixel text-[10px] text-white transition-all duration-200 bg-arcade-red font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-arcade-red hover:scale-105">
+                                <span class="mr-2 text-lg animate-bounce">▼</span>
+                                DOWNLOAD CV CARD
+                                <div class="absolute inset-0 border-2 border-white pointer-events-none group-hover:border-dashed"></div>
+                            </a>
+
+                            <span class="text-[8px] text-gray-500 animate-pulse">INSERT COIN TO HIRE</span>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div>
-                    <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">MOBILE & FRONT</h4>
-                    <ul class="text-[10px] space-y-3 text-arcade-cyan">
-                        <li>FLUTTER / DART</li>
-                        <li>KOTLIN</li>
-                        <li>TAILWIND CSS</li>
-                        <li>REACT NATIVE (POC)</li>
-                        <li>FIREBASE AUTH</li>
-                        <li>FIREBASE HOSTING</li>
-                    </ul>
+            </div>
+        </section>
+
+<div class="w-full flex justify-center space-x-16 py-10 -mt-16 opacity-60 pointer-events-none relative z-20">
+            <div class="animate-bounce-slow delay-0 text-4xl drop-shadow-lg">🍌</div>
+            <div class="animate-bounce-slow delay-300 text-4xl drop-shadow-lg">🍌</div>
+            <div class="animate-bounce-slow delay-700 text-4xl drop-shadow-lg">🍌</div>
+            <div class="animate-pulse delay-1000 text-4xl text-yellow-400 drop-shadow-lg">ⓒ</div>
+        </div>
+
+
+        <section id="skills" class="max-w-4xl mx-auto mt-48 mb-40 scroll-mt-52">
+
+            <div class="border-4 border-white p-1 bg-black">
+
+                <div class="border-2 border-white p-6 relative">
+
+                    <h3 class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-black px-4 text-arcade-red">
+                        INVENTORY (SKILLS)
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center mt-4">
+
+                        <div>
+                            <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">BACKEND</h4>
+                            <ul class="text-[10px] space-y-3 text-arcade-cyan">
+                                <li>.NET / C#</li>
+                                <li>SQL SERVER</li>
+                                <li>NODE.JS</li>
+                                <li>APIs REST</li>
+                                <li>IDENTITY (AUTH)</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">MOBILE & FRONT</h4>
+                            <ul class="text-[10px] space-y-3 text-arcade-cyan">
+                                <li>FLUTTER / DART</li>
+                                <li>KOTLIN</li>
+                                <li>TAILWIND CSS</li>
+                                <li>REACT NATIVE (POC)</li>
+                                <li>FIREBASE AUTH</li>
+                                <li>FIREBASE HOSTING</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">INFRA</h4>
+                            <ul class="text-[10px] space-y-3 text-arcade-cyan">
+                                <li>DOCKER</li>
+                                <li>LINUX (UBUNTU)</li>
+                                <li>FIREBASE</li>
+                                <li>GIT</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">FRONTNET</h4>
+                            <ul class="text-[10px] space-y-3 text-arcade-cyan">
+                                <li>RAZOR PAGES</li>
+                                <li>ASP.NET MVC</li>
+                                <li>COMPONENTES</li>
+                                <li>IDENTITY UI</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div>
-                    <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">INFRA</h4>
-                    <ul class="text-[10px] space-y-3 text-arcade-cyan">
-                        <li>DOCKER</li>
-                        <li>LINUX (UBUNTU)</li>
-                        <li>FIREBASE</li>
-                        <li>GIT</li>
-                    </ul>
-                </div>
+            </div>
 
-                <div>
-                    <h4 class="text-arcade-peach mb-4 text-xs border-b border-gray-800 pb-2">FRONTNET</h4>
-                    <ul class="text-[10px] space-y-3 text-arcade-cyan">
-                        <li>RAZOR PAGES</li>
-                        <li>ASP.NET MVC</li>
-                        <li>COMPONENTES</li>
-                        <li>IDENTITY UI</li>
-                    </ul>
-                </div>
+        </section>
 
-                </div>
+        <div class="relative w-full h-40 flex justify-center items-end overflow-hidden -mb-12 pointer-events-none z-10">
+            <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-red-600 to-transparent opacity-80 animate-pulse"></div>
+            <div class="w-2/3 h-4 border-b-4 border-dashed border-gray-500 relative z-10 mb-4"></div>
+            <div class="absolute bottom-0 left-1/2 w-8 h-8 bg-orange-500 rounded-full border-2 border-white animate-lava-jump z-0 shadow-[0_0_15px_rgba(255,165,0,0.8)]">
+                 <div class="absolute top-1 left-1 w-2 h-2 bg-yellow-300 rounded-full"></div>
             </div>
         </div>
-    </section>
 
 
-<section id="contact" class="text-center pt-10 scroll-mt-72">
-        <div class="girder-window p-10 max-w-2xl mx-auto animate-pulse-slow">
-            <p class="text-arcade-red text-lg mb-6 blink">GAME OVER</p>
-            <p class="text-white text-xs mb-8">¿QUIERES CONTINUAR?<br>INSERTA UNA MONEDA O CONTACTA AL DEV</p>
-            
-            <div class="flex justify-center gap-4">
-                <a href="mailto:sebaleonpr@gmail.com" class="btn-pixel">EMAIL</a>
-                <a href="https://www.linkedin.com/in/sebastian-leon-19b3b939b/" target="_blank" class="btn-pixel">LINKEDIN</a>
-                <a href="https://github.com/Sebaall" target="_blank" class="btn-pixel">GITHUB</a>
+        <section id="contact" class="text-center pt-20 pb-20 scroll-mt-40 relative z-0">
+
+            <div class="girder-window p-10 max-w-2xl mx-auto animate-pulse-slow">
+
+                <p class="text-arcade-red text-lg mb-6 blink">GAME OVER</p>
+
+                <p class="text-white text-xs mb-8">
+                    ¿QUIERES CONTINUAR?<br>
+                    INSERTA UNA MONEDA O CONTACTA AL DEV
+                </p>
+
+                <div class="flex justify-center gap-4">
+                    <a href="mailto:sebaleonpr@gmail.com" class="btn-pixel">EMAIL</a>
+                    <a href="https://www.linkedin.com/in/sebastian-leon-19b3b939b/" target="_blank"
+                        class="btn-pixel">LINKEDIN</a>
+                    <a href="https://github.com/Sebaall" target="_blank" class="btn-pixel">GITHUB</a>
+                </div>
+
             </div>
-        </div>
-        <p class="text-[8px] text-gray-600 mt-12">© 2025 SEBASTIÁN LEÓN • DESARROLLADOR</p>
-    </section>
 
-</main>
+            <p class="text-[8px] text-gray-600 mt-12">© 2025 SEBASTIÁN LEÓN • DESARROLLADOR</p>
 
-<script src="js/animations.js"></script>
-<script src="js/slider.js"></script>
-<script src="js/recharge.js"></script>
+        </section>
+
+    </main>
+
+
+    <script src="js/animations.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/recharge.js"></script>
 
 </body>
 </html>
