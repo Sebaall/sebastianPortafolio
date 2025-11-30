@@ -380,3 +380,7 @@ body {
 .animate-lava-jump {
     animation: lava-jump 4s ease-in-out infinite;
 }
+
+body {
+    padding-top: 80px; 
+}
